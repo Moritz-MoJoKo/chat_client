@@ -28,12 +28,12 @@ public class MsgGateway
      * 
      * @return Eintragobjekt mit passender id oder null
      */
-    public MsgEintrag hole(int id)
+    public message hole(int id)
     {
         verbinde();
-        db.executeStatement("SELECT * FROM highscore WHERE id ="+id);
+        db.executeStatement("");
         QueryResult ergebnis = db.getCurrentQueryResult();
-        MsgEintrag erg = new MsgEintrag(ergebnis.getData()[0][0], ergebnis.getData()[0][1], Integer.parseInt(ergebnis.getData()[0][2]));
+        message erg = new message(ergebnis.getData()[0][0], ergebnis.getData()[0][1], ergebnis.getData()[0][2]);
         beende();
         return erg;
     }
@@ -43,17 +43,17 @@ public class MsgGateway
      * 
      * @return Liste aller Einträge
      */
-    public List<MsgEintrag> holeAlle()
+    public List<message> holeAlle()
     {
         verbinde();
-        List <MsgEintrag> highscore = new List();
+        List <message> highscore = new List();
         db.executeStatement("Select id, name, punkte from highscore ORDER BY punkte ASC");
         QueryResult ergebnis = db.getCurrentQueryResult();
         if(ergebnis != null)
         {
             for(int i = 0; i < ergebnis.getRowCount(); i++)
             {
-                highscore.append(new MsgEintrag(ergebnis.getData()[i][0], ergebnis.getData()[i][1], Integer.parseInt(ergebnis.getData()[i][2])));
+                highscore.append(new message(ergebnis.getData()[i][0], ergebnis.getData()[i][1], ergebnis.getData()[i][2]));
             }
         }
         beende();
@@ -65,17 +65,17 @@ public class MsgGateway
      * 
      * @return Liste aller Einträge
      */
-    public List<MsgEintrag> holeZehn()
+    public List<message> holeZehn()
     {
         verbinde();
-        List <MsgEintrag> highscore = new List();
+        List <message> highscore = new List();
         db.executeStatement("Select id, name, punkte from highscore ORDER BY punkte ASC Limit 10");
         QueryResult ergebnis = db.getCurrentQueryResult();
         if(ergebnis != null)
         {
             for(int i = 0; i < ergebnis.getRowCount(); i++)
             {
-                highscore.append(new MsgEintrag(ergebnis.getData()[i][0], ergebnis.getData()[i][1], Integer.parseInt(ergebnis.getData()[i][2])));
+                highscore.append(new message(ergebnis.getData()[i][0], ergebnis.getData()[i][1], ergebnis.getData()[i][2]));
             }
         }
         beende();
@@ -89,17 +89,17 @@ public class MsgGateway
      * 
      * @return Liste aller Einträge
      */
-    public List<MsgEintrag> sucheNachName(String name)
+    public List<message> sucheNachName(String name)
     {
         verbinde();
-        List <MsgEintrag> highscore = new List();
+        List <message> highscore = new List();
         db.executeStatement("Select id, name, punkte from highscore WHERE name = '"+name+"' ORDER BY punkte ASC");
         QueryResult ergebnis = db.getCurrentQueryResult();
         if(ergebnis != null)
         {
             for(int i = 0; i < ergebnis.getRowCount(); i++)
             {
-                highscore.append(new MsgEintrag(ergebnis.getData()[i][0], ergebnis.getData()[i][1], Integer.parseInt(ergebnis.getData()[i][2])));
+                highscore.append(new message(ergebnis.getData()[i][0], ergebnis.getData()[i][1], ergebnis.getData()[i][2]));
             }
         }
         beende();

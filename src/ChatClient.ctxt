@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=ChatClient
+comment0.text=\r\n\ Klasse\ fuer\ einen\ SpielClient\r\n\ @author\ Henning\ Ain\u00C3\u00B6dhofer\r\n\ @version\ 21.3.2017\r\n
+comment1.params=ip\ p
+comment1.target=ChatClient(java.lang.String,\ int)
+comment2.params=message
+comment2.target=void\ processMessage(java.lang.String)
+comment2.text=\r\n\ Diese\ Methode\ der\ Server-Klasse\ wird\ hiermit\ ueberschrieben.\r\n\ Der\ Client\ gibt\ die\ erhaltende\ Meldung,\ auf\ dem\ Textfeld\ aus.\r\n
+comment3.params=message
+comment3.target=java.lang.String\ gibBefehlsbereich(java.lang.String)
+comment3.text=\r\n\ Diese\ Methode\ gibt\ den\ Befehl\ zur\u00C3\u00BCck\ die\ die\ message\ beinhaltet\r\n\ \r\n\ @param\ message\r\n\ \r\n\ @return\ Befehl\r\n
+comment4.params=message
+comment4.target=java.lang.String\ gibTextbereich(java.lang.String)
+comment4.text=\r\n\ Diese\ Methode\ gibt\ den\ Text\ zur\u00C3\u00BCck\ die\ die\ message\ beinhaltet\r\n\ \r\n\ @param\ message\r\n\ \r\n\ @return\ Text\r\n
+comment5.params=message
+comment5.target=void\ highscorelisteDrucken(java.lang.String)
+comment5.text=\r\n\ Diese\ Methode\ druckt\ die\ Higscoreliste\ auf\ der\ Konsole\ aus.\r\n\ @param\ message\r\n
+numComments=6

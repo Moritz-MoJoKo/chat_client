@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Die Klasse Eintrag dient dem Speichern der Highscorepunkte mit Namen
  * @author Moritz Koch
@@ -22,7 +24,7 @@ public class MsgEintrag
     }
 
     /**
-     * Diese Methode gibt die Punkte des Eintrages zurück
+     * Diese Methode gibt die Punkte des Eintrages zurï¿½ck
      * 
      * @return punkte : int
      */
@@ -32,7 +34,7 @@ public class MsgEintrag
     }
     
     /**
-     * Diese Methode gibt den Namen des Eintrages zurück
+     * Diese Methode gibt den Namen des Eintrages zurï¿½ck
      * 
      * @return name : String
      */
@@ -42,7 +44,7 @@ public class MsgEintrag
     }
     
     /**
-     * Diese Methode gibt die id des Eintrages zurück
+     * Diese Methode gibt die id des Eintrages zurï¿½ck
      */
     public String gibId()
     {

@@ -1,10 +1,26 @@
+package src;
+
 import javax.swing.*;
 /**
- * Klasse fuer einen SpielClient
- * @author Henning Ainödhofer
- * @version 21.3.2017
+ * Klasse fuer einen ChatClient.
+ * 
+ *          C=>S                            |             S=>C
+ *                                          |
+ *      Verbinden                           |      +OK Verbindung hergestellt
+ *      REG <user> <pw>                     |      REG Registrierung erfolgreich
+ *                                          |      ERR01 User schon vergeben
+ *                                          |      ERR02 Passwort zu kurz (mind. 8 Zeichen)
+ *      ANM <user> <pw>                     |      ANM Anmeldung erfolgreich
+ *                                          |      ERR03 Daten unpassend
+ *      SND <msg>                           |      +OK Nachricht wird versendet
+ *                                          |      ERR04 Nachricht zu lang (höch. 100 Zeichen) 
+ *      HIS                                 |      HIS Historie wird geladen
+ *      END                                 |      END <user> ist jetzt offline
+ *      
+ *      
+ * @author 
+ * @version 
  */
-
 public class ChatClient extends Client { 
     public ChatClient(String ip, int p) {
         super(ip, p);
@@ -24,43 +40,31 @@ public class ChatClient extends Client {
                 break;
             }
             
-            case "FLS":
+            case "REG":
             {
                 System.out.println(gibTextbereich(message));
                 break;
             }
             
-            case "TRU":
+            case "ANM":
             {
                 System.out.println(gibTextbereich(message));
                 break;
             }
                 
-            case "GHC":
+            case "SND":
             {
                 System.out.println(message);
                 break;
             }
             
-            case "END":
+            case "HIS":
             {
                 System.out.println(gibTextbereich(message));    
                 break;
             }
             
-            case "-E1":
-            {
-                System.out.println(gibTextbereich(message));
-                break;
-            }
-            
-            case "-E2":
-            {
-                System.out.println(gibTextbereich(message));
-                break;
-            }
-            
-            case "-E3":
+            case "END":
             {
                 System.out.println(gibTextbereich(message));
                 break;

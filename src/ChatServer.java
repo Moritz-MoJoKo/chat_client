@@ -1,9 +1,25 @@
-import java.net.*;
+package src;
 
+import java.net.*;
 /**
- * Klasse fuer einen ChatServer. Der ChatServer bietet die Möglickeit mit anderen verbundenen Clients einen Chat zu f�hren und mit ihnen zu schreiben
- * @author Moritz Koch, Erik
- * @version 04.06.2024
+ * Klasse fuer einen ChatClient.
+ * 
+ *          C=>S                            |             S=>C
+ *                                          |
+ *      Verbinden                           |      +OK Verbindung hergestellt
+ *      REG <user> <pw>                     |      REG <user> <pw>
+ *                                          |      ERR01 User schon vergeben
+ *                                          |      ERR02 Passwort zu kurz (mind. 8 Zeichen)
+ *      ANM <user> <pw>                     |      ANM Anmeldung erfolgreich
+ *                                          |      ERR03 Daten unpassend
+ *      SND <msg>                           |      +OK Nachricht wird versendet
+ *                                          |      ERR04 Nachricht zu lang (höch. 100 Zeichen) 
+ *      HIS                                 |      +OK Historie wird geladen
+ *      END                                 |      END <user> ist jetzt offline
+ *      
+ *      
+ * @author 
+ * @version 
  */
 
 public class ChatServer extends Server {

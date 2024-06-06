@@ -1,11 +1,11 @@
 package src;
 
 /**
- * Die Klasse Eintrag dient dem Speichern der User
+ * Die Klasse Eintrag dient dem Speichern der Highscorepunkte mit Namen
  * @author Moritz Koch
  * @version 04.06.2024
  */
-public class UsrEintrag
+public class MsgEintrag
 {
     private int punkte;
     private String name;
@@ -16,7 +16,7 @@ public class UsrEintrag
      * @param punkte : int
      * @param name : String
      */
-    public UsrEintrag(String id, String name, int punkte)
+    public MsgEintrag(String id, String name, int punkte)
     {
         this.id = id;
         this.punkte = punkte;

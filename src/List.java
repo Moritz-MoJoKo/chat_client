@@ -1,5 +1,4 @@
- 
-
+package src;
 /** 
  * Materialien zu den zentralen NRW-Abiturpruefungen im Fach Informatik ab 2017.
  * 
@@ -23,7 +22,8 @@
  * @version Generisch_06 2015-10-25
  * @param <ContentType>
  */
-public class List<ContentType> {
+public class List<ContentType> 
+{
 
   /* --------- Anfang der privaten inneren Klasse -------------- */
 

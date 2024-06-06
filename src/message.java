@@ -1,3 +1,5 @@
+package src;
+
 
 /**
  * Mit dieser Klasse werden Objekte der Klasse Message geschaffen und implementiert.
@@ -13,7 +15,7 @@ public class message
     private String date;
 
     /**
-     * Konstruktor für Objekte der Klasse message
+     * Konstruktor fï¿½r Objekte der Klasse message
      */
     public message(String autor, String content, String date)
     {
@@ -23,7 +25,7 @@ public class message
     }
 
     /**
-     * Diese Methode gibt den autor einer Nachricht zurück
+     * Diese Methode gibt den autor einer Nachricht zurï¿½ck
      * 
      * @return autor : String
        */
@@ -32,7 +34,7 @@ public class message
     }
     
     /**
-     * Diese Methode gibt den Inhalt einer Nachricht zurück
+     * Diese Methode gibt den Inhalt einer Nachricht zurï¿½ck
      * 
      * @return content : String
        */
@@ -41,7 +43,7 @@ public class message
     }
     
     /**
-     * Diese Methode gibt das Datum einer Nachricht zurück
+     * Diese Methode gibt das Datum einer Nachricht zurï¿½ck
      * 
      * @return date : String
        */

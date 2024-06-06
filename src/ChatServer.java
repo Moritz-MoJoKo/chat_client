@@ -1,5 +1,3 @@
-package src;
-
 import java.net.*;
 /**
  * Klasse fuer einen ChatClient.
@@ -26,13 +24,13 @@ public class ChatServer extends Server {
 
     private MsgGateway MsgHistorie;
     private UsrGateway UsrDB;
-    private List<Spiel> spieleOnline; 
+    private List<UsrEintrag> userOnline; 
     
     public ChatServer(int p) {
         super(p);
         MsgHistorie = new MsgGateway();
         UsrDB = new UsrGateway();
-        spieleOnline = new List<>();
+        userOnline = new List<>();
     }
 
     /**
@@ -79,15 +77,6 @@ public class ChatServer extends Server {
     {
         ChatServer es = new ChatServer(2000);
     }
-
-    /**
-     * Methode, die bei Aufruf eine Zufallszahl zwischen 0 und 20 zurück gibt.
-     * @return Zufallszahl
-     */
-    private synchronized int gibZufallszahl()
-    {
-        return (int)(Math.random() * 20);
-    }
     
     /**
      * Diese Methode gibt den Befehl zurück die die message beinhaltet
@@ -112,25 +101,5 @@ public class ChatServer extends Server {
     {
         String [] messageArray = message.split(" ");
         return messageArray[1];
-    }
-    
-    
-    /**
-     * Diese Methode generiert einen String aus den Einträgen der übergebenen Liste.
-     * Dabei beachtet man das folgende Format:
-     * Name:Punkte Name:Punkte Name:Punkte usw.
-     * 
-     * @param Liste mit Objekten vom Typ Eintrag
-     * @return String mit Einrtägen durch Leerzeichen getrennt
-     */
-    private String generiereStringAusList(List<Eintrag> l)
-    {
-        String ausgabe = "";
-        l.toFirst();
-        while(l.hasAccess()){
-            ausgabe = ausgabe + l.getContent().gibName() + ":" + l.getContent().gibPunkte() + " ";
-            l.next();
-        }
-        return ausgabe;
     }
 }

@@ -1,4 +1,4 @@
-package src;
+ 
 
 
 /**
@@ -9,7 +9,7 @@ package src;
  */
 public class message
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
+    // Instanzvariablen
     private String autor;
     private String content;
     private String date;

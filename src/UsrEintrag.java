@@ -1,36 +1,35 @@
-package src;
+ 
 
 /**
  * Die Klasse Eintrag dient dem Speichern der User
  * @author Moritz Koch
- * @version 04.06.2024
+ * @version 06.06.2024
  */
 public class UsrEintrag
 {
-    private int punkte;
     private String name;
-    private String id;
+    private String passwort;
 
     /**
      * Konstruktor der Klasse Eintrag
-     * @param punkte : int
      * @param name : String
+     * @param passwort : String
+     * @param id : String 
      */
-    public UsrEintrag(String id, String name, int punkte)
+    public UsrEintrag(String name, String passwort)
     {
-        this.id = id;
-        this.punkte = punkte;
         this.name = name;
+        this.passwort = passwort;
     }
 
     /**
-     * Diese Methode gibt die Punkte des Eintrages zurï¿½ck
+     * Diese Methode gibt das Passwort des Eintrages zurück
      * 
-     * @return punkte : int
+     * @return passwort : String
      */
-    public int gibPunkte()
+    public String gibPasswort()
     {
-        return this.punkte;
+        return this.passwort;
     }
     
     /**
@@ -41,15 +40,6 @@ public class UsrEintrag
     public String gibName()
     {
         return this.name;
-    }
-    
-    /**
-     * Diese Methode gibt die id des Eintrages zurï¿½ck
-     */
-    public String gibId()
-    {
-        return this.id;
-    }
-        
+    }   
         
 }

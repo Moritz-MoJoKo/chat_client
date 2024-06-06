@@ -1,11 +1,11 @@
-package src;
-
+ 
+ 
 /**
  * Diese Klasse setzt das Entwurfsmuster DataTableGateway um. Dabei stellt es alle Datenbankrelevanten Funktionen, die die Anwendung benötigt 
  * zur Verfügung. Erweiterungen und Einschränkungen sind möglich.
  * 
- * @author Henning Ainödhofer
- * @version 10.04.2018
+ * @author Moritz Koch
+ * @version 06.06.2024
  */
 public class UsrGateway
 {
@@ -13,7 +13,7 @@ public class UsrGateway
     private DatabaseConnector db;
 
     /**
-     * Konstruktor für Objekte der Klasse HighscoreGateway
+     * Konstruktor für Objekte der Klasse UsrGateway
      */
     public UsrGateway()
     {
@@ -24,16 +24,16 @@ public class UsrGateway
     /**
      * Diese Methode setzt die READ-Funktion um, indem man nach einem Objekt mit einer bestimmten id fragen kann.
      * 
-     * @param id
+     * @param name : String
      * 
-     * @return Eintragobjekt mit passender id oder null
+     * @return Eintragobjekt mit passendem namen oder null
      */
-    public UsrEintrag hole(int id)
+    public UsrEintrag hole(String name)
     {
         verbinde();
-        db.executeStatement("SELECT * FROM highscore WHERE id ="+id);
+        db.executeStatement("SELECT * FROM user WHERE name ="+name);
         QueryResult ergebnis = db.getCurrentQueryResult();
-        UsrEintrag erg = new UsrEintrag(ergebnis.getData()[0][0], ergebnis.getData()[0][1], Integer.parseInt(ergebnis.getData()[0][2]));
+        UsrEintrag erg = new UsrEintrag(ergebnis.getData()[0][0], ergebnis.getData()[0][1]);
         beende();
         return erg;
     }
@@ -46,98 +46,44 @@ public class UsrGateway
     public List<UsrEintrag> holeAlle()
     {
         verbinde();
-        List <UsrEintrag> highscore = new List();
-        db.executeStatement("Select id, name, punkte from highscore ORDER BY punkte ASC");
+        List <UsrEintrag> user = new List();
+        db.executeStatement("Select name, passwort from user");
         QueryResult ergebnis = db.getCurrentQueryResult();
         if(ergebnis != null)
         {
             for(int i = 0; i < ergebnis.getRowCount(); i++)
             {
-                highscore.append(new UsrEintrag(ergebnis.getData()[i][0], ergebnis.getData()[i][1], Integer.parseInt(ergebnis.getData()[i][2])));
+                user.append(new UsrEintrag(ergebnis.getData()[i][0], ergebnis.getData()[i][1]));
             }
         }
         beende();
-        return highscore;
+        return user;
     }
     
-    /**
-     * Diese Methode setzt die READ-Funktion um, indem man sich alle Objekte der Tabelle liefern lassen kann.
-     * 
-     * @return Liste aller Einträge
-     */
-    public List<UsrEintrag> holeZehn()
-    {
-        verbinde();
-        List <UsrEintrag> highscore = new List();
-        db.executeStatement("Select id, name, punkte from highscore ORDER BY punkte ASC Limit 10");
-        QueryResult ergebnis = db.getCurrentQueryResult();
-        if(ergebnis != null)
-        {
-            for(int i = 0; i < ergebnis.getRowCount(); i++)
-            {
-                highscore.append(new UsrEintrag(ergebnis.getData()[i][0], ergebnis.getData()[i][1], Integer.parseInt(ergebnis.getData()[i][2])));
-            }
-        }
-        beende();
-        return highscore;
-    }
+    
+
     
     /**
-     * Diese Methode setzt die READ-Funktion um, indem man sich alle Objekte der Tabelle liefern lassen kann, die den selben Namen besitzen.
-     * 
-     * @param text
-     * 
-     * @return Liste aller Einträge
-     */
-    public List<UsrEintrag> sucheNachName(String name)
-    {
-        verbinde();
-        List <UsrEintrag> highscore = new List();
-        db.executeStatement("Select id, name, punkte from highscore WHERE name = '"+name+"' ORDER BY punkte ASC");
-        QueryResult ergebnis = db.getCurrentQueryResult();
-        if(ergebnis != null)
-        {
-            for(int i = 0; i < ergebnis.getRowCount(); i++)
-            {
-                highscore.append(new UsrEintrag(ergebnis.getData()[i][0], ergebnis.getData()[i][1], Integer.parseInt(ergebnis.getData()[i][2])));
-            }
-        }
-        beende();
-        return highscore;
-    }
-    
-    /**
-     * Diese Methode setzt die CREATE-Funktion um, indem hier neue Highscores in die Datenbank eingetragen werden.
+     * Diese Methode setzt die CREATE-Funktion um, indem hier neue user in die Datenbank eingetragen werden.
      * 
      * @param name
-     * @param punkte
+     * @param passwort 
      */
-    public void hinzufuegen(String name, int punkte)
+    public void hinzufuegen(String name, String passwort)
     {
         verbinde();
-        db.executeStatement("INSERT INTO highscore (name, punkte) VALUES ('"+name+"', "+punkte+")");
+        db.executeStatement("INSERT INTO user (name, passwort) VALUES ("+name+", "+passwort+")");
         beende();
     }
     
-    /**
-     * Diese Methode setzt die DELETE-Funktion um, indem hier Datensätze über die Angabe der id gelöscht werden können.
-     * 
-     * @param id
-     */
-    public void loesche(String id)
-    {
-        verbinde();
-        db.executeStatement("DELETE FROM highscore WHERE id ="+id);
-        beende();
-    }
     
     /**
-     * Diese Methode erzeugt die Tabelle highscore, wenn diese nicht schon exisitiert.
+     * Diese Methode erzeugt die Tabelle user, wenn diese nicht schon exisitiert.
      */
     public void erzeugeTabelle()
     {
          verbinde();
-         db.executeStatement("Create table if not exists highscore (id INTEGER PRIMARY KEY AUTOINCREMENT, name text, punkte int)");
+         db.executeStatement("Create table if not exists user (name text PRIMARY KEY AUTOINCREMENT, passwort text)");
          beende();
     }
     
@@ -148,7 +94,7 @@ public class UsrGateway
     {
         if(db == null)
         {
-            db = new DatabaseConnector("",0,"spielstand","","");
+            db = new DatabaseConnector("",0,"userdb","","");
         }
     }
     

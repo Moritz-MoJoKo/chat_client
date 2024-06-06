@@ -1,5 +1,3 @@
-package src;
-
 /**
  * <p>
  * Materialien zu den zentralen NRW-Abiturpruefungen im Fach Informatik ab 2018
@@ -246,16 +244,16 @@ public abstract class Server
     
     public boolean isOpen()
     {
-    	return(connectionHandler.active);
+        return(connectionHandler.active);
     }
     
     public boolean isConnectedTo(String pClientIP, int pClientPort)
     {
-    	 ClientMessageHandler aMessageHandler = findClientMessageHandler(pClientIP, pClientPort);
+         ClientMessageHandler aMessageHandler = findClientMessageHandler(pClientIP, pClientPort);
          if (aMessageHandler != null)
-        	 return(aMessageHandler.active);
+             return(aMessageHandler.active);
          else
-        	 return(false);
+             return(false);
     }
 
     public void send(String pClientIP, int pClientPort, String pMessage)
@@ -267,15 +265,15 @@ public abstract class Server
 
     public void sendToAll(String pMessage)
     {
-    	synchronized(messageHandlers)
-    	{
-    		messageHandlers.toFirst();
-    		while (messageHandlers.hasAccess())
-    		{
-    			messageHandlers.getContent().send(pMessage);
-    			messageHandlers.next();
-    		}
-    	}
+        synchronized(messageHandlers)
+        {
+            messageHandlers.toFirst();
+            while (messageHandlers.hasAccess())
+            {
+                messageHandlers.getContent().send(pMessage);
+                messageHandlers.next();
+            }
+        }
     }
     
     public void closeConnection(String pClientIP, int pClientPort)
@@ -296,15 +294,15 @@ public abstract class Server
         
         synchronized(messageHandlers)
         {
-        	ClientMessageHandler aMessageHandler;
-        	messageHandlers.toFirst();
-        	while (messageHandlers.hasAccess())
-        	{
-        		aMessageHandler = messageHandlers.getContent();
-        		processClosingConnection(aMessageHandler.getClientIP(), aMessageHandler.getClientPort());
-        		aMessageHandler.close();
-        		messageHandlers.remove();
-        	}
+            ClientMessageHandler aMessageHandler;
+            messageHandlers.toFirst();
+            while (messageHandlers.hasAccess())
+            {
+                aMessageHandler = messageHandlers.getContent();
+                processClosingConnection(aMessageHandler.getClientIP(), aMessageHandler.getClientPort());
+                aMessageHandler.close();
+                messageHandlers.remove();
+            }
         }
 
     }
@@ -316,46 +314,46 @@ public abstract class Server
        
     private void addNewClientMessageHandler(Socket pClientSocket)
     {
-    	synchronized(messageHandlers)
-    	{
-    		messageHandlers.append(new Server.ClientMessageHandler(pClientSocket));
-    	}
+        synchronized(messageHandlers)
+        {
+            messageHandlers.append(new Server.ClientMessageHandler(pClientSocket));
+        }
     }
 
     private void removeClientMessageHandler(ClientMessageHandler pClientMessageHandler)
     {
-    	synchronized(messageHandlers)
-    	{
-    		messageHandlers.toFirst();
-    		while (messageHandlers.hasAccess())
-    		{
-    			if (pClientMessageHandler ==  messageHandlers.getContent())
-    			{
-    				messageHandlers.remove();
-    				return;
-    			}
-    			else
-    				messageHandlers.next();
-    		}
-    	}
+        synchronized(messageHandlers)
+        {
+            messageHandlers.toFirst();
+            while (messageHandlers.hasAccess())
+            {
+                if (pClientMessageHandler ==  messageHandlers.getContent())
+                {
+                    messageHandlers.remove();
+                    return;
+                }
+                else
+                    messageHandlers.next();
+            }
+        }
     }
 
     private ClientMessageHandler findClientMessageHandler(String pClientIP, int pClientPort)
     {
-    	synchronized(messageHandlers)
-    	{
-    		ClientMessageHandler aMessageHandler;
-    		messageHandlers.toFirst();
+        synchronized(messageHandlers)
+        {
+            ClientMessageHandler aMessageHandler;
+            messageHandlers.toFirst();
 
-    		while (messageHandlers.hasAccess())
-    		{
-    			aMessageHandler = messageHandlers.getContent();       
-    			if (aMessageHandler.getClientIP().equals(pClientIP) && aMessageHandler.getClientPort() == pClientPort)
-    				return (aMessageHandler);
-    			messageHandlers.next();
-    		}
-    		return (null);
-    	}
+            while (messageHandlers.hasAccess())
+            {
+                aMessageHandler = messageHandlers.getContent();       
+                if (aMessageHandler.getClientIP().equals(pClientIP) && aMessageHandler.getClientPort() == pClientPort)
+                    return (aMessageHandler);
+                messageHandlers.next();
+            }
+            return (null);
+        }
     }
 
 }

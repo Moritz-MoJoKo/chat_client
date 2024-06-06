@@ -1,4 +1,4 @@
-package src;
+ 
 
 /**
  * Diese Klasse setzt das Entwurfsmuster DataTableGateway um. Dabei stellt es alle Datenbankrelevanten Funktionen, die die Anwendung benötigt 

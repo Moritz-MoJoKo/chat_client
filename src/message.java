@@ -1,5 +1,7 @@
  
 
+ 
+
 
 /**
  * Mit dieser Klasse werden Objekte der Klasse Message geschaffen und implementiert.

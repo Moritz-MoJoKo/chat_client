@@ -1,4 +1,4 @@
- 
+package src; 
 
 /**
  * Die Klasse Eintrag dient dem Speichern der User
@@ -23,7 +23,7 @@ public class UsrEintrag
     }
 
     /**
-     * Diese Methode gibt das Passwort des Eintrages zurück
+     * Diese Methode gibt das Passwort des Eintrages zurï¿½ck
      * 
      * @return passwort : String
      */

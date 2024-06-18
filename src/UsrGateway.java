@@ -1,3 +1,5 @@
+package src;
+
  
  
 /**
@@ -21,21 +23,26 @@ public class UsrGateway
         db = null;
     }
 
+    
+    
     /**
-     * Diese Methode setzt die READ-Funktion um, indem man nach einem Objekt mit einer bestimmten id fragen kann.
+     * Diese Methode setzt die READ-Funktion um, indem man sich alle Objekte der Tabelle liefern lassen kann, die den selben Namen besitzen.
      * 
-     * @param name : String
+     * @param text
      * 
-     * @return Eintragobjekt mit passendem namen oder null
+     * @return Liste aller Einträge
      */
-    public UsrEintrag hole(String name)
+    public boolean istNameVorhanden(String name)
     {
         verbinde();
         db.executeStatement("SELECT * FROM user WHERE name ="+name);
         QueryResult ergebnis = db.getCurrentQueryResult();
-        UsrEintrag erg = new UsrEintrag(ergebnis.getData()[0][0], ergebnis.getData()[0][1]);
+        if(ergebnis != null)
+        {
+            return true;
+        }
         beende();
-        return erg;
+        return false;
     }
     
     /**

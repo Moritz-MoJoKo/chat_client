@@ -1,4 +1,4 @@
-
+package src;
 
 import java.net.*;
 /**
@@ -7,7 +7,7 @@ import java.net.*;
  *          C=>S                            |             S=>C
  *                                          |
  *      Verbinden                           |      +OK Verbindung hergestellt
- *      REG <user> <pw>                     |      REG <user> <pw>
+ *      REG <user> <pw>                     |      REG Registrierung erfolgreich
  *                                          |      ERR01 User schon vergeben
  *                                          |      ERR02 Passwort zu kurz (mind. 8 Zeichen)
  *      ANM <user> <pw>                     |      ANM Anmeldung erfolgreich
@@ -26,13 +26,12 @@ public class ChatServer extends Server {
 
     private MsgGateway MsgHistorie;
     private UsrGateway UsrDB;
-    private List<UsrEintrag> userOnline; 
+    
     
     public ChatServer(int p) {
         super(p);
         MsgHistorie = new MsgGateway();
         UsrDB = new UsrGateway();
-        userOnline = new List<>();
     }
 
     /**
@@ -52,7 +51,49 @@ public class ChatServer extends Server {
      */
     public void processMessage(String pClientIP, int pClientPort, String pMessage){ 
         switch(gibBefehlsbereich(pMessage))
-        {
+        {   
+            case "REG":
+            {
+                if(UsrDB.istNameVorhanden(this.wortAn(pMessage, 1))){
+                    //Wenn ja ERR01
+                    this.send(pClientIP, pClientPort, "ERR01 Name schon vergeben");
+                }
+                else{
+                    if(this.wortAn(pMessage, 2).length() < 8){
+                        this.send(pClientIP, pClientPort, "ERR02 Passwort zu kurz (mind. 8 Zeichen)");
+                    }
+                    else{
+                        this.send(pClientIP, pClientPort, "REG Registrierung erfolgreich");
+                    }
+                }
+                    
+                
+                break;
+            }
+            
+            case "ANM":
+            {
+                System.out.println(wortAn(pMessage, 1));
+                break;
+            }
+                
+            case "SND":
+            {
+                System.out.println(pMessage);
+                break;
+            }
+            
+            case "HIS":
+            {
+                System.out.println(wortAn(pMessage, 1));    
+                break;
+            }
+            
+            case "END":
+            {
+                System.out.println(wortAn(pMessage, 1));
+                break;
+            }
                 
             default:
             {
@@ -79,6 +120,15 @@ public class ChatServer extends Server {
     {
         ChatServer es = new ChatServer(2000);
     }
+
+    /**
+     * Methode, die bei Aufruf eine Zufallszahl zwischen 0 und 20 zurück gibt.
+     * @return Zufallszahl
+     */
+    private synchronized int gibZufallszahl()
+    {
+        return (int)(Math.random() * 20);
+    }
     
     /**
      * Diese Methode gibt den Befehl zurück die die message beinhaltet
@@ -99,9 +149,12 @@ public class ChatServer extends Server {
      * 
      * @return Text
      */
-    private synchronized String gibTextbereich(String message)
+    private synchronized String wortAn(String message, int stelle)
     {
-        String [] messageArray = message.split(" ");
-        return messageArray[1];
+        return message.split(" ")[stelle];
     }
+    
+    
+   
 }
+

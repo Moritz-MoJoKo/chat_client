@@ -1,4 +1,3 @@
- 
 
 import java.net.*;
 /**
@@ -15,7 +14,7 @@ import java.net.*;
  *      SND <msg>                           |      +OK Nachricht wird versendet
  *                                          |      ERR04 Nachricht zu lang (höch. 100 Zeichen) 
  *      HIS                                 |      +OK Historie wird geladen
- *      END                                 |      END <user> ist jetzt offline
+ *      END                                 |      END user ist jetzt offline
  *      
  *      
  * @author 
@@ -24,14 +23,14 @@ import java.net.*;
 
 public class ChatServer extends Server {
 
-    private MsgGateway MsgHistorie;
-    private UsrGateway UsrDB;
+    private MsgGateway msgDB;
+    private UsrGateway usrDB;
     
     
     public ChatServer(int p) {
         super(p);
-        MsgHistorie = new MsgGateway();
-        UsrDB = new UsrGateway();
+        msgDB = new MsgGateway();
+        usrDB = new UsrGateway();
     }
 
     /**
@@ -54,7 +53,7 @@ public class ChatServer extends Server {
         {   
             case "REG":
             {
-                if(UsrDB.istNameVorhanden(this.wortAn(pMessage, 1))){
+                if(usrDB.istNameVorhanden(this.wortAn(pMessage, 1))){
                     //Wenn ja ERR01
                     this.send(pClientIP, pClientPort, "ERR01 Name schon vergeben");
                 }
@@ -64,6 +63,7 @@ public class ChatServer extends Server {
                     }
                     else{
                         this.send(pClientIP, pClientPort, "REG Registrierung erfolgreich");
+                        usrDB.hinzufuegen(this.wortAn(pMessage, 1), this.wortAn(pMessage, 2));
                     }
                 }
                     
@@ -73,25 +73,39 @@ public class ChatServer extends Server {
             
             case "ANM":
             {
-                System.out.println(wortAn(pMessage, 1));
+                if(usrDB.passenDaten(this.wortAn(pMessage, 1), this.wortAn(pMessage,2))){
+                    this.send(pClientIP, pClientPort, "ERR03 Daten unpassend");
+                }
+                else{
+                    this.send(pClientIP, pClientPort, "ANM Anmeldung erfolgreich");
+                }
                 break;
             }
                 
             case "SND":
             {
-                System.out.println(pMessage);
+                String message = "";
+                if(pMessage.length() >= 104){
+                    this.send(pClientIP, pClientPort, "ERR04 Nachricht zu lang (höch. 100 Zeichen)");
+                }
+                else{
+                    this.send(pClientIP, pClientPort, "+OK Nachricht wird versendet");
+                    message = pMessage.substring(4); 
+                    msgDB.postMessage(message);
+                }
                 break;
             }
             
             case "HIS":
             {
-                System.out.println(wortAn(pMessage, 1));    
+                msgDB.ladeHistory();
+                this.send(pClientIP, pClientPort, "+OK Historie wird geladen");
                 break;
             }
             
             case "END":
             {
-                System.out.println(wortAn(pMessage, 1));
+                this.send(pClientIP, pClientPort, "END User ist jetzt offline");
                 break;
             }
                 
@@ -102,7 +116,7 @@ public class ChatServer extends Server {
             }
         }
 
-    }
+    }   
     
     /**
      * Diese Methode der Server-Klasse wird hiermit ueberschrieben.

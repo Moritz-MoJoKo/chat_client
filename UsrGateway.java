@@ -1,3 +1,6 @@
+
+
+
  
 /**
  * Diese Klasse setzt das Entwurfsmuster DataTableGateway um. Dabei stellt es alle Datenbankrelevanten Funktionen, die die Anwendung benötigt 
@@ -33,6 +36,22 @@ public class UsrGateway
     {
         verbinde();
         db.executeStatement("SELECT * FROM user WHERE name ="+name);
+        QueryResult ergebnis = db.getCurrentQueryResult();
+        if(ergebnis != null)
+        {
+            return true;
+        }
+        beende();
+        return false;
+    }
+    
+        /**
+     * Diese Methode prüft, ob der angegebene Name und das Passwort übereinstimmen.
+     */
+    public boolean passenDaten(String name, String passwort)
+    {
+        verbinde();
+        db.executeStatement("SELECT * FROM user WHERE name =" +name+ "AND WHERE passwort ="+passwort);
         QueryResult ergebnis = db.getCurrentQueryResult();
         if(ergebnis != null)
         {

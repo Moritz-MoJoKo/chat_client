@@ -1,5 +1,3 @@
- 
-
 /**
  * Diese Klasse setzt das Entwurfsmuster DataTableGateway um. Dabei stellt es alle Datenbankrelevanten Funktionen, die die Anwendung benötigt 
  * zur Verfügung. Erweiterungen und Einschränkungen sind möglich.
@@ -36,7 +34,7 @@ public class MsgGateway
         beende();
     }
     
-    public List<message> holeAlle(){
+    public List<message> ladeHistory(){
         List <message> messageHis = new List();
         db.executeStatement("Select autor, msg, datum from msgHistorie");
         QueryResult ergebnis = db.getCurrentQueryResult();

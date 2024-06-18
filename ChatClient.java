@@ -1,5 +1,3 @@
- 
-
 import javax.swing.*;
 /**
  * Klasse fuer einen ChatClient.

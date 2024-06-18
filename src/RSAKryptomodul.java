@@ -1,3 +1,5 @@
+package src;
+
 import java.security.*;
 import java.security.spec.*;
 import javax.crypto.Cipher;
@@ -19,7 +21,7 @@ public class RSAKryptomodul implements kryptomodul {
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             byte[] encryptedBytes = cipher.doFinal(klartext.getBytes());
             String encryptedText = Base64.getEncoder().encodeToString(encryptedBytes);
-            System.out.println("Verschlüsselter Text: " + encryptedText);
+            System.out.println("Verschlï¿½sselter Text: " + encryptedText);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,7 +37,7 @@ public class RSAKryptomodul implements kryptomodul {
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(geheimtext));
             String decryptedText = new String(decryptedBytes);
-            System.out.println("Entschlüsselter Text: " + decryptedText);
+            System.out.println("Entschlï¿½sselter Text: " + decryptedText);
         } catch (Exception e) {
             e.printStackTrace();
         }

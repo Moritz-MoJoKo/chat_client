@@ -1,4 +1,4 @@
-package src;
+ 
 
 import java.security.*;
 import java.security.spec.*;
@@ -12,7 +12,7 @@ public class RSAKryptomodul implements kryptomodul {
     private static final String ALGORITHM = "RSA";
     
     @Override
-    public void verschluesseln(String klartext, int key) {
+    public void verschluesseln(String klartext) {
         try {
             // Load public key
             loadkey();
@@ -28,7 +28,7 @@ public class RSAKryptomodul implements kryptomodul {
     }
     
     @Override
-    public void entschluesseln(String geheimtext, int key) {
+    public void entschluesseln(String geheimtext) {
         try {
             // Load private key
             loadkey();
@@ -44,7 +44,7 @@ public class RSAKryptomodul implements kryptomodul {
     }
     
     @Override
-    public void savekey(int key) {
+    public void savekey() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("rsa_keypair.dat"))) {
             oos.writeObject(publicKey);
             oos.writeObject(privateKey);

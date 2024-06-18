@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=MsgGateway
+comment0.text=\r\n\ Diese\ Klasse\ setzt\ das\ Entwurfsmuster\ DataTableGateway\ um.\ Dabei\ stellt\ es\ alle\ Datenbankrelevanten\ Funktionen,\ die\ die\ Anwendung\ ben\u00C3\u00B6tigt\ \r\n\ zur\ Verf\u00C3\u00BCgung.\ Erweiterungen\ und\ Einschr\u00C3\u00A4nkungen\ sind\ m\u00C3\u00B6glich.\r\n\ \r\n\ @author\ \r\n\ @version\ \r\n
+comment1.params=
+comment1.target=MsgGateway()
+comment1.text=\r\n\ Konstruktor\ f\u00C3\u00BCr\ Objekte\ der\ Klasse\ HighscoreGateway\r\n
+comment2.params=msg
+comment2.target=void\ postMessage(java.lang.String)
+comment2.text=\r\n\ Diese\ Methode\ setzt\ die\ CREATE-Funktion\ um,\ indem\ hier\ neue\ Nachrichten\ in\ die\ Datenbank\ eingetragen\ werden.\r\n\ \r\n\ @param\ name\r\n\ @param\ punkte\r\n
+comment3.params=
+comment3.target=List\ holeAlle()
+comment4.params=
+comment4.target=void\ getMessages()
+comment5.params=
+comment5.target=void\ erzeugeTabelle()
+comment5.text=\r\n\ Diese\ Methode\ erzeugt\ die\ Tabelle\ highscore,\ wenn\ diese\ nicht\ schon\ exisitiert.\r\n
+comment6.params=
+comment6.target=void\ verbinde()
+comment6.text=\r\n\ Diese\ Methode\ stellt\ eine\ Verbindung\ zur\ Datenbank\ her.\r\n
+comment7.params=
+comment7.target=void\ beende()
+comment7.text=\r\n\ Diese\ Methode\ beendet\ die\ Verbindung\ zur\ Datenbank.\r\n
+numComments=8

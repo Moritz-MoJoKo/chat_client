@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=message
+comment0.text=\r\n\ Mit\ dieser\ Klasse\ werden\ Objekte\ der\ Klasse\ Message\ geschaffen\ und\ implementiert.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment1.params=autor\ content\ date
+comment1.target=message(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Konstruktor\ f\u00EF\u00BF\u00BDr\ Objekte\ der\ Klasse\ message\r\n
+comment2.params=
+comment2.target=java.lang.String\ getAutor()
+comment2.text=\r\n\ Diese\ Methode\ gibt\ den\ autor\ einer\ Nachricht\ zur\u00EF\u00BF\u00BDck\r\n\ \r\n\ @return\ autor\ \:\ String\r\n
+comment3.params=
+comment3.target=java.lang.String\ getContent()
+comment3.text=\r\n\ Diese\ Methode\ gibt\ den\ Inhalt\ einer\ Nachricht\ zur\u00EF\u00BF\u00BDck\r\n\ \r\n\ @return\ content\ \:\ String\r\n
+comment4.params=
+comment4.target=java.lang.String\ getDate()
+comment4.text=\r\n\ Diese\ Methode\ gibt\ das\ Datum\ einer\ Nachricht\ zur\u00EF\u00BF\u00BDck\r\n\ \r\n\ @return\ date\ \:\ String\r\n
+numComments=5

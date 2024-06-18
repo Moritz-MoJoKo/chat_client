@@ -1,4 +1,4 @@
-package src;
+ 
 
 /**
  * Diese Klasse setzt das Entwurfsmuster DataTableGateway um. Dabei stellt es alle Datenbankrelevanten Funktionen, die die Anwendung benötigt 
@@ -36,6 +36,21 @@ public class MsgGateway
         beende();
     }
     
+    public List<message> holeAlle(){
+        List <message> messageHis = new List();
+        db.executeStatement("Select autor, msg, datum from msgHistorie");
+        QueryResult ergebnis = db.getCurrentQueryResult();
+        if(ergebnis != null)
+        {
+            for(int i = 0; i < ergebnis.getRowCount(); i++)
+            {
+                messageHis.append(new message(ergebnis.getData()[i][0], ergebnis.getData()[i][1], ergebnis.getData()[i][2]));
+            }
+        }
+        beende();
+        return messageHis;
+    }
+    
     public void getMessages()
     {
         verbinde();
@@ -49,7 +64,7 @@ public class MsgGateway
     public void erzeugeTabelle()
     {
          verbinde();
-         db.executeStatement("Create table if not exists msgHistorie (name INTEGER PRIMARY KEY AUTOINCREMENT, msg text, datum text)");
+         db.executeStatement("Create table if not exists msgHistorie (autor text PRIMARY KEY AUTOINCREMENT, msg text, datum text)");
          beende();
     }
     
@@ -75,4 +90,5 @@ public class MsgGateway
             db = null;
         }
     }
+    
 }

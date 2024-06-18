@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.target=kryptomodul
 comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ kryptomodul.\r\n\ \r\n\ @author\ Moritz\ Koch\r\n\ @version\ 13.06.2024\r\n
-comment1.params=klartext\ key
-comment1.target=void\ verschluesseln(java.lang.String,\ int)
-comment2.params=geheimtext\ key
-comment2.target=void\ entschluesseln(java.lang.String,\ int)
-comment3.params=key
-comment3.target=void\ savekey(int)
+comment1.params=klartext
+comment1.target=void\ verschluesseln(java.lang.String)
+comment2.params=geheimtext
+comment2.target=void\ entschluesseln(java.lang.String)
+comment3.params=
+comment3.target=void\ savekey()
 comment4.params=
 comment4.target=void\ loadkey()
 comment5.params=

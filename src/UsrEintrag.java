@@ -1,5 +1,3 @@
-package src; 
-
 /**
  * Die Klasse Eintrag dient dem Speichern der User
  * @author Moritz Koch

@@ -12,6 +12,9 @@ public class RSAKryptomodul implements kryptomodul {
     @Override
     public void verschluesseln(String klartext, int key) {
         try {
+            // Load public key
+            loadkey();
+            
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             byte[] encryptedBytes = cipher.doFinal(klartext.getBytes());
@@ -25,6 +28,9 @@ public class RSAKryptomodul implements kryptomodul {
     @Override
     public void entschluesseln(String geheimtext, int key) {
         try {
+            // Load private key
+            loadkey();
+            
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(geheimtext));
@@ -53,6 +59,11 @@ public class RSAKryptomodul implements kryptomodul {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public KeyPair getKey() {
+        return new KeyPair(publicKey, privateKey);
     }
     
     public void generateKeyPair() {

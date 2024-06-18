@@ -1,3 +1,4 @@
+import java.security.KeyPair;
 
 /**
  * Beschreiben Sie hier die Klasse kryptomodul.
@@ -5,8 +6,7 @@
  * @author Moritz Koch
  * @version 13.06.2024
  */
-public interface kryptomodul
-{
+public interface kryptomodul {
 
     public void verschluesseln(String klartext, int key);
     
@@ -15,4 +15,6 @@ public interface kryptomodul
     public void savekey(int key);
     
     public void loadkey();
+    
+    public KeyPair getKey();
 }

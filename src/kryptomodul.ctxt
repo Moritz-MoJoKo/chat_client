@@ -9,4 +9,6 @@ comment3.params=key
 comment3.target=void\ savekey(int)
 comment4.params=
 comment4.target=void\ loadkey()
-numComments=5
+comment5.params=
+comment5.target=java.security.KeyPair\ getKey()
+numComments=6

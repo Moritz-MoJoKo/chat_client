@@ -49,12 +49,6 @@ public class MsgGateway
         return messageHis;
     }
     
-    public void getMessages()
-    {
-        verbinde();
-        db.executeStatement("");
-        beende();
-    }
     
     /**
      * Diese Methode erzeugt die Tabelle highscore, wenn diese nicht schon exisitiert.

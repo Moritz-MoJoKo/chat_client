@@ -134,15 +134,6 @@ public class ChatServer extends Server {
     {
         ChatServer es = new ChatServer(2000);
     }
-
-    /**
-     * Methode, die bei Aufruf eine Zufallszahl zwischen 0 und 20 zurück gibt.
-     * @return Zufallszahl
-     */
-    private synchronized int gibZufallszahl()
-    {
-        return (int)(Math.random() * 20);
-    }
     
     /**
      * Diese Methode gibt den Befehl zurück die die message beinhaltet
